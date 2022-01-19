@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { axiosInstance } from "../apis/baseApi";
+import { axiosInstance } from "../../apis/baseApi";
+import { loginUser } from "./LoginSlice";
 
 function Login(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [values, setValues] = useState({
     username: "",
@@ -19,9 +22,7 @@ function Login(props) {
 
   const handleSubmit = async () => {
     try {
-      const res = await axiosInstance.post("/Auth/login", values);
-      console.log(res);
-      window.localStorage.setItem("accessToken", res.data.token);
+      dispatch(loginUser(values));
       history.push("/");
     } catch (err) {}
   };

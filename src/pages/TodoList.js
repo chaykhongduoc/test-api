@@ -9,11 +9,13 @@ export default function TodoList(props) {
   const data = useSelector(todosSeletor);
   console.log(data);
   return (
-    <ul>
-      {data &&
-        data.map((item, index) => {
-          return <li key={index}>{item.title}</li>;
-        })}
-    </ul>
+    <>
+      <ul>
+        {data &&
+          data.map((item, index) => {
+            return <li key={index}>{item.title}</li>;
+          })}
+      </ul>
+    </>
   );
 }
